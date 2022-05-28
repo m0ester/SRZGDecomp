@@ -377,6 +377,7 @@ lbl_800044B4:
 /* 800044B4 000005B4  34 A5 FF FF */	addic. r5, r5, -1
 /* 800044B8 000005B8  40 82 FF F4 */	bne lbl_800044AC
 /* 800044BC 000005BC  4E 80 00 20 */	blr 
+.global lbl_800044C0
 lbl_800044C0:
 /* 800044C0 000005C0  4D 65 74 72 */	.4byte 0x4D657472  /* unknown instruction */
 /* 800044C4 000005C4  6F 77 65 72 */	xoris r23, r27, 0x6572

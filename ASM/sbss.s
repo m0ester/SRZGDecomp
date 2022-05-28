@@ -1,4 +1,6 @@
-.section sbss, "wa"" #0x,
+.include "macros.inc"
+
+.section .sbss, "wa" #0x,
 
 .global lbl_8060A340
 lbl_8060A340:
