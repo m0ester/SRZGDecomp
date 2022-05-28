@@ -1,4 +1,6 @@
-.section .data6, "wa"  # 0x80608900 - 0x8060A340
+.include "macros.inc"
+
+.section .sdata, "wa"  # 0x80608900 - 0x8060A340
 .global lbl_80608900
 lbl_80608900:
 	.incbin "baserom.dol", 0x3AB000, 0x4

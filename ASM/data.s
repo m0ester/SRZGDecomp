@@ -1,4 +1,6 @@
-.section .data5, "wa"  # 0x80327A00 - 0x803AEF40
+.include "macros.inc"
+
+.section .data, "wa"  # 0x80327A00 - 0x803AEF40
 .global lbl_80327A00
 lbl_80327A00:
 	.incbin "baserom.dol", 0x323AC0, 0x18

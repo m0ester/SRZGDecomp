@@ -1,4 +1,4 @@
-.section .text0, "ax"  # 0x80004000 - 0x800064E0
+.section .init, "ax"  # 0x80004000 - 0x800064E0
 
 .global func_80004000
 func_80004000:

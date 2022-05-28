@@ -1,4 +1,6 @@
-.section .data4, "wa"  # 0x80301DC0 - 0x803279E0
+.include "macros.inc"
+
+.section .rodata, "wa"  # 0x80301DC0 - 0x803279E0
 .global lbl_80301DC0
 lbl_80301DC0:
 	.incbin "baserom.dol", 0x2FDEA0, 0x10
