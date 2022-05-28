@@ -1,3 +1,5 @@
+.include "macros.inc"
+
 .section .init, "ax"  # 0x80004000 - 0x800064E0
 
 .global func_80004000

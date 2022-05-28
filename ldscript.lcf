@@ -1,17 +1,53 @@
-_SDA_BASE_ = 0x80610900;
-_SDA2_BASE_ = 0x80613460;
+MEMORY
+{
+    text : origin = 0x80004000
+}
+
 SECTIONS
 {
-    .ìnit (0x80004000) : { *(.init) }
-	.extab (0x800064E0) : { *(.extab) }
-    .extabindex (0x8000D0E0) : { *(.extabindex) }
-	.text (0x80013740) : { *(.text) }
-    .ctors (0x803019E0) : { *(.ctors) }
-    .dtors (0x80301D80) : { *(.dtors) }
-    .rodata (0x80301DC0) : { *(.rodata) }
-    .data (0x80327A00) : { *(.data) }
-	.bss (0x803AEF40) : { *(.bss) }
-    .sdata (0x80608900) : { *(.sdata) }
-    .sdata2 (0x8060B460) : { *(.sdata2) }
+    GROUP:
+    {
+        .init ALIGN(0x20):{}
+        extab_ ALIGN(0x20):{}
+        extabindex_ ALIGN(0x20):{}
+        .text ALIGN(0x20):{}
+        .ctors ALIGN(0x20):{}
+        .dtors ALIGN(0x20):{}
+        .rodata ALIGN(0x20):{}
+        .data ALIGN(0x20):{}
+        .bss ALIGN(0x40):{}
+        .sdata ALIGN(0x20):{}
+        .sbss ALIGN(0x20):{}
+        .sdata2 ALIGN(0x20):{}
+        .sbss2 ALIGN(0x20):{}
+        .stack ALIGN(0x100):{}
 
+    } > text
+    sz_init = SIZEOF(.init);
+    szextab_ = SIZEOF(extab_);
+    szextabindex_ = SIZEOF(extabindex_);
+    sz_text = SIZEOF(.text);
+    sz_ctors = SIZEOF(.ctors);
+    sz_dtors = SIZEOF(.dtors);
+    sz_rodata = SIZEOF(.rodata);
+    sz_data = SIZEOF(.data);
+    sz_bss = SIZEOF(.bss);
+    sz_sdata = SIZEOF(.sdata);
+    sz_sbss = SIZEOF(.sbss);
+    sz_sdata2 = SIZEOF(.sdata2);
+    sz_sbss2 = SIZEOF(.sbss2);
+    _stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65535 + 0x7) & ~0x7;
+    _stack_end = _f_sbss2 + SIZEOF(.sbss2);
+    _db_stack_addr = (_stack_addr + 0x2000);
+    _db_stack_end = _stack_addr;
+    __ArenaLo = (_stack_addr + 0x1f) & ~0x1f;
+    __ArenaHi = 0x81700000;
+}
+
+FORCEFILES 
+{
+    ctors.o
+    dtors.o
+    extab.o
+    extabindex.o
 }
