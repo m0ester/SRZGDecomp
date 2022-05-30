@@ -100,7 +100,7 @@ typedef struct {
 	uint32_t bss_addr;
 	uint32_t bss_size;
 	uint32_t entry;
-	uint32_t pad[7];
+	uint8_t misc[28];
 } DOL_hdr;
 
 #define HAVE_BSS 1
@@ -408,12 +408,16 @@ void write_dol(DOL_map *map, const char *dol)
 		if(swap32(map->header.bss_addr) && swap32(map->header.bss_size))
 			fprintf(stderr, " BSS @ 0x%08x [0x%x]\n", swap32(map->header.bss_addr),
 			        swap32(map->header.bss_size));
-		fprintf(stderr, " Entry: 0x%08x\n", swap32(map->header.entry));
-		fprintf(stderr, "Writing DOL header...\n");
-	}
-	
-	// Write DOL header with aligned text and data section sizes
-	DOL_hdr aligned_header = map->header;
+        fprintf(stderr, " Entry: 0x%08x\n", swap32(map->header.entry));
+        fprintf(stderr, "Writing DOL header...\n");
+    }
+    
+    // HAAAAAACK.
+    strcpy((char *)map->header.misc,       "NTSC 1.00");
+    strcpy((char *)map->header.misc + 0xA, "MCM v4.3");
+    
+    // Write DOL header with aligned text and data section sizes
+    DOL_hdr aligned_header = map->header;
 	for(i=0; i<ARRAY_COUNT(aligned_header.text_size); i++)
 		aligned_header.text_size[i] = swap32(DOL_ALIGN(swap32(aligned_header.text_size[i])));
 	for(i=0; i<ARRAY_COUNT(aligned_header.data_size); i++)

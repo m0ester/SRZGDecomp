@@ -1,6 +1,6 @@
 .include "macros.inc"
 
-.section .bss, "wa"  # 0x803aef40 - 0x8060A33F
+.section .bss, "wa"  # 0x803aef40 - 0x80608900
 
 ##- 0x8060E078
 .global lbl_803AEF40
@@ -2459,4 +2459,4 @@ lbl_80604568:
 	.skip 0x2A00
 .global lbl_80606F68
 lbl_80606F68:
-	.skip 0x33D8
+	.skip 0x1998

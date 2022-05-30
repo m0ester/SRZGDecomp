@@ -2287,4 +2287,4 @@ lbl_8060B454:
 	.skip 0x4
 .global lbl_8060B458
 lbl_8060B458:
-	.skip 0x2C08
+	.skip 0x8
