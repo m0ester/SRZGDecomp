@@ -10,7 +10,7 @@
 	.4byte 0x00000010
 	.4byte 0x00000000
 	.4byte 0x82000008
-	.4byte 0x8007E8DC ;# ptr
+	.4byte lbl_8007E8DC
 	.4byte 0x18080000
 	.4byte 0x00000000
 	.4byte 0x20080000
@@ -18,7 +18,7 @@
 	.4byte 0x00000010
 	.4byte 0x00000000
 	.4byte 0x82000008
-	.4byte 0x8007E8DC ;# ptr
+	.4byte lbl_8007E8DC
 	.4byte 0x20080000
 	.4byte 0x00000000
 	.4byte 0x30080000
